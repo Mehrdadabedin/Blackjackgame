@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Blackjack</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<script src="{% static 'js/scripts.js' %}"></script>
+
+</head>
+<body>
+    {% include 'navigation.html' %}
+	
+	{% block content %}
+
+	{% endblock %}
+	
+</body>
+</html>

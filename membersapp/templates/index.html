@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <!-- Add your content here -->
+    <div>&nbsp;</div>
+    <div><span class="msgdealer"></span></div>
+    <div><span class="msgdealer2"></span></div>
+    <div id="table-container">
+        <div id="dealer-container">
+            <span><img src="{% static 'members/avatar3.jpg' %}" alt="Dealer" width="50" height="53"></span>
+            <span class="dealer-btn"><button class="button2" id="deal-button" onclick="Deal()">Deal</button></span>
+            <span id="dealer-label"></span><span id="dealer-label2"></span>
+            <span class="curved-text">Mike's Casino Blackjack<span class="msg"></span></span>
+            <div id="player-container">
+                <div class="player-info">
+                    {% for member in members %}
+                    <div class="player">    
+                        <span class="chips-label"><span>{{ member.name }}</span> <br>{{ member.amount }}</span>
+                        <img src="{{ member.photo.url }}" alt="Avatar" width="40" height="50">
+                        <div class="divtest"><span class="card-label player-{{ member.id }}"></span></div>
+                        <span class="rotate-btn">
+                            {% csrf_token %}
+                                <button class="button" onclick=" add_card(event, '{{ member.id }}');">+</button>
+                                <button id="stand-button" onclick="stand_card()">Stand</button>
+
+                        </span> 
+                    {% endfor %}
+                  </div>
+                  
+            </div>
+            
+        </div>
+        
+    </div>
+    
+	<div class="footer"> &copy; 2023 Mike's casino. All rights reserved.  </div>
+{% endblock %}

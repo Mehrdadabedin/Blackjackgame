@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  
+  <div class="profdiv">Welcome <span class="names">{{ user.username }}!</span></div>
+  <ul>
+    {% for member in members %}
+  <li>
+    <a href="{% url 'update_member' member.pk %}">{{ member.name }}</a>
+    (<a href="{% url 'delete_member' member.pk %}">delete</a>)
+  </li>
+{% endfor %}
+  </ul>
+  <ul><li>
+  <a href="{% url 'add_member' %}">Add player</a>
+  </li></ul>
+{% endblock %}

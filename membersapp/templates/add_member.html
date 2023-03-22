@@ -1,0 +1,26 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+	<form method="post" enctype="multipart/form-data">
+		{% csrf_token %}
+		<div class="toptext">Add player</div>
+		<div class="welcomediv">
+		<div class="prof"><label for="name">Name:</label>
+		<input type="text" name="name" required></div>
+		<div class="prof"><label for="email">Email:</label>
+		<input type="email" name="email" required></div>
+		<div class="prof"><label for="amount">Amount:</label>
+		<input class="input" type="text" name="amount"  required></div>
+		<div class="prof"><label for="photo">Photo:</label>
+		<input type="file" name="photo" accept="image/*" required></div>
+		<div>&nbsp;</div>
+		<div ><input class="add_btn" id="add_member" type="submit" value="Add"></div>
+	</div>
+	</form>
+	<div>&nbsp;</div>
+	<div>&nbsp;</div>
+	<div>&nbsp;</div>
+	<div>&nbsp;</div>
+	<div class="footer"> &copy; 2023 Mike's casino. All rights reserved.  </div>
+	{% endblock %}

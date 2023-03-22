@@ -1,0 +1,17 @@
+<!-- templates/profile.html -->
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="profdiv">Welcome <span class="names">{{ username }}&nbsp;</span class="names">as a superuser check the list of players!<span></span></div>
+<div>&nbsp;</div>
+<div>
+  {% for member in members %}
+    <div id="delete_member">
+      <a href="{% url 'update_member' member.pk %}" title="update">(Update)&nbsp;{{ member.name }}</a>&nbsp
+      &nbsp;<span class="del_one"><a  href="{% url 'delete_member' member.pk %}" title="delete">delete</a></span>
+    </div>
+  {% endfor %}
+  </div>
+<!-- <a href="{% url 'add_member' %}">Add new member</a> -->
+
+{% endblock %}
