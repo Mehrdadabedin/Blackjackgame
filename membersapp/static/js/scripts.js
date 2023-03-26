@@ -20,7 +20,130 @@ const cardImages = [];
   }
   let players = document.querySelectorAll(".card-label");
 
-function Dealers() {
+// function Dealers() {
+//   // Get the dealer and player elements
+//   const dealer = document.getElementById("dealer-label");
+//   const dealer2 = document.getElementById("dealer-label2");
+//   const players = document.querySelectorAll(".card-label");
+
+//   // Shuffle the deck
+//   const deck = [...Array(52).keys()];
+//   shuffle(deck);
+
+//   // Deal two cards to each player and one card to the dealer (all face up)
+//   for (let i = 0; i < 2; i++) {
+//     for (let j = 0; j < players.length; j++) {
+//       const cardIndex = deck.pop();
+//       const card = cardImages[cardIndex];
+//       if (i == 0) {
+//         // First card is face up for players
+//         players[j].innerHTML += `<img src="${card}" alt="Card">`;
+//       } else {
+//         // Second card is face up for players
+//         const cardIndex = deck.pop();
+//         const card = cardImages[cardIndex];
+//         players[j].innerHTML += `<img src="${card}" alt="Card">`;
+//       }
+//     }
+//     const cardIndex = deck.pop();
+//     const card = cardImages[cardIndex];
+//     if (i == 0) {
+//       // First card is face up for dealer
+//       dealer.innerHTML += `<img src="${card}" alt="Card">`;
+//     } else {
+//       // Only deal the second card to the dealer after players have finished their turns
+//       if (getTotal(dealer) < 17) {
+//         const cardIndex = deck.pop();
+//         const card = cardImages[cardIndex];
+//         dealer2.innerHTML += `<img src="${card}" alt="Card">`;
+//       }
+//     }
+//   }
+// }
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   function Deal() {
+//     // Get the dealer and player elements
+//     const dealer = document.getElementById("dealer-label");
+//     const dealer2 = document.getElementById("dealer-label2");
+//     const players = document.querySelectorAll(".card-label");
+  
+//     // Shuffle the deck
+//     const deck = [...Array(52).keys()];
+//     shuffle(deck);
+  
+//     // Deal two cards to each player and two cards to the dealer (all face up)
+//     for (let i = 0; i < 2; i++) {
+//       for (let j = 0; j < players.length; j++) {
+//         const cardIndex = deck.pop();
+//         const card = cardImages[cardIndex];
+//         if (i == 0) {
+//           // First card is face up for players
+//           players[j].innerHTML += `<img src="${card}" alt="Card">`;
+//         } else {
+//           // Second card is face up for players
+//           const cardIndex = deck.pop();
+//           const card = cardImages[cardIndex];
+//           players[j].innerHTML += `<img src="${card}" alt="Card">`;
+//         }
+//       }
+//       const cardIndex = deck.pop();
+//       const card = cardImages[cardIndex];
+      
+//       if (i == 0) {
+//         // First card is face up for dealer
+//         dealer.innerHTML += `<img src="${card}" alt="Card">`;
+//       } else {
+//         // Second card is face down for dealer
+//         dealer.innerHTML += `<img src="card_back.png" alt="Card">`;
+//         // Third card is face up for dealer
+//         const cardIndex = deck.pop();
+//         const card = cardImages[cardIndex];
+//         dealer2.innerHTML += `<img src="${card}" alt="Card">`;
+  
+//         // Add event listener to dealer button
+//         const dealerButton = document.getElementById("deal-button");
+//         dealerButton.addEventListener("click", () => {
+//           // Deal a new card to the dealer
+//           const newCardIndex = deck.pop();
+//           const newCard = cardImages[newCardIndex];
+//           dealer2.innerHTML += `<img src="${newCard}" alt="Card">`;
+  
+//           // Check dealer total and disable button if necessary
+//           if (getTotal(dealer) >= 17) {
+//             dealerButton.disabled = true;
+//           }
+//         });
+//       }
+//     }
+  
+//     // Flag variable to keep track of the number of players who have played their turn
+//     let numPlayersPlayed = 0;
+  
+//     // Create player objects and add event listeners for stand buttons
+//     const playersArr = [];
+//     for (let i = 0; i < players.length; i++) {
+//       const player = new Player(i, `player${i + 1}-label`);
+//       playersArr.push(player);
+  
+//       const standButton = document.getElementById(`player${i + 1}-stand-button`);
+//       standButton.addEventListener("click", () => {
+//         player.stand();
+//         numPlayersPlayed++;
+//         if (numPlayersPlayed === players.length) {
+//           stand_card();
+//         }
+//       });
+//     }
+//   }
+  
+  
+
+//   // Add event listener for the deal button
+//   const dealButton = document.getElementById("deal-button");
+//   dealButton.addEventListener("click", Deal);
+// });
+function Deal() {
   // Get the dealer and player elements
   const dealer = document.getElementById("dealer-label");
   const dealer2 = document.getElementById("dealer-label2");
@@ -30,7 +153,7 @@ function Dealers() {
   const deck = [...Array(52).keys()];
   shuffle(deck);
 
-  // Deal two cards to each player and one card to the dealer (all face up)
+  // Deal two cards to each player and two cards to the dealer (all face up)
   for (let i = 0; i < 2; i++) {
     for (let j = 0; j < players.length; j++) {
       const cardIndex = deck.pop();
@@ -47,86 +170,52 @@ function Dealers() {
     }
     const cardIndex = deck.pop();
     const card = cardImages[cardIndex];
+
     if (i == 0) {
       // First card is face up for dealer
       dealer.innerHTML += `<img src="${card}" alt="Card">`;
     } else {
-      // Only deal the second card to the dealer after players have finished their turns
-      if (getTotal(dealer) < 17) {
-        const cardIndex = deck.pop();
-        const card = cardImages[cardIndex];
-        dealer2.innerHTML += `<img src="${card}" alt="Card">`;
-      }
-    }
-  }
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  function Deal() {
-    // Get the dealer and player elements
-    const dealer = document.getElementById("dealer-label");
-    const dealer2 = document.getElementById("dealer-label2");
-    const players = document.querySelectorAll(".card-label");
-
-    // Shuffle the deck
-    const deck = [...Array(52).keys()];
-    shuffle(deck);
-
-    // Deal two cards to each player and one card to the dealer (all face up)
-    for (let i = 0; i < 2; i++) {
-      for (let j = 0; j < players.length; j++) {
-        const cardIndex = deck.pop();
-        const card = cardImages[cardIndex];
-        if (i == 0) {
-          // First card is face up for players
-          players[j].innerHTML += `<img src="${card}" alt="Card">`;
-        } else {
-          // Second card is face up for players
-          const cardIndex = deck.pop();
-          const card = cardImages[cardIndex];
-          players[j].innerHTML += `<img src="${card}" alt="Card">`;
-        }
-      }
+      // Second card is face down for dealer
+      //dealer.innerHTML += `<img src="card_back.png" alt="Card">`;
+      // Third card is face up for dealer
       const cardIndex = deck.pop();
       const card = cardImages[cardIndex];
-      
-      if (i == 0) {
-        // First card is face up for dealer
-        dealer.innerHTML += `<img src="${card}" alt="Card">`;
-      } else {
-        // Only deal the second card to the dealer after players have finished their turns
-        if (getTotal(dealer) < 17) {
-          const cardIndex = deck.pop();
-          const card = cardImages[cardIndex];
-          dealer2.innerHTML += `<img src="${card}" alt="Card">`;
-        }
-      }
-    }
-
-    // Flag variable to keep track of the number of players who have played their turn
-    let numPlayersPlayed = 0;
-
-    // Create player objects and add event listeners for stand buttons
-    const playersArr = [];
-    for (let i = 0; i < players.length; i++) {
-      const player = new Player(i, `player${i + 1}-label`);
-      playersArr.push(player);
-
-      const standButton = document.getElementById(`player${i + 1}-stand-button`);
-      standButton.addEventListener("click", () => {
-        player.stand();
-        numPlayersPlayed++;
-        if (numPlayersPlayed === players.length) {
-          stand_card();
-        }
-      });
+      dealer2.innerHTML += `<img src="${card}" alt="Card">`;
     }
   }
 
-  // Add event listener for the deal button
-  const dealButton = document.getElementById("deal-button");
-  dealButton.addEventListener("click", Deal);
-});
+  // Disable deal button if dealer already has 17 or more
+  if (getTotal(dealer) >= 17) {
+    const dealerButton = document.getElementById("deal-button");
+    dealerButton.disabled = true;
+  }
+
+  // Flag variable to keep track of the number of players who have played their turn
+  let numPlayersPlayed = 0;
+
+  // Create player objects and add event listeners for stand buttons
+  const playersArr = [];
+  for (let i = 0; i < players.length; i++) {
+    const player = new Player(i, `player${i + 1}-label`);
+    playersArr.push(player);
+
+    const standButton = document.getElementById(`player${i + 1}-stand-button`);
+    standButton.addEventListener("click", () => {
+      player.stand();
+      numPlayersPlayed++;
+      if (numPlayersPlayed === players.length) {
+        // Deal a new card to the dealer if necessary
+        if (getTotal(dealer) < 17) {
+          const newCardIndex = deck.pop();
+          const newCard = cardImages[newCardIndex];
+          dealer2.innerHTML += `<img src="${newCard}" alt="Card">`;
+        }
+        // Determine winner and reset game
+        determineWinner(dealer, dealer2, playersArr);
+      }
+    });
+  }
+}
 
 
 
@@ -135,11 +224,12 @@ const deck = [
 ];
 
 class Player {
-  constructor(id, label) {
+  constructor(id, label, currentPlayerIndex) {
     this.id = id;
     this.label = label;
     this.cards = [];
-    this.hasPlayed = false; // initialize hasPlayed to false
+    this.hasPlayed = false;
+    this.currentPlayerIndex = currentPlayerIndex; // set currentPlayerIndex as an instance variable
   }
 
   hit() {
@@ -167,19 +257,6 @@ class Player {
 //deck = shuffle([...Array(52).keys()]);
 let numPlayers = 5;
 let playerHands = [];
-
-// function dealCards(playerIndex, numCards, playerHands) {
-//   const playerHand = playerHands[playerIndex];
-//   for (let i = 0; i < numCards; i++) {
-//     if (deck.length === 0) {
-//       console.log("No cards left in deck!");
-//       return;
-//     }
-//     const cardIndex = deck.pop();
-//     playerHand.push(cardIndex);
-//   }
-// }
-
 
 function add_card(event, member_id) {
   event.preventDefault();
@@ -271,64 +348,152 @@ function getTotal(element) {
 }
 
 
-function determineWinner(playerElement) {
-  const playerTotal = getTotal(playerElement);
-  const dealerTotal = getTotal(document.getElementById("dealer-label"));
+function determineWinner(member_id) {
+  let winner = "dealer";
+  let winningTotal = getTotal(Dealers);
+  let tie = false;
 
-  if (playerTotal > 21) {
-    return "dealer";
-  } else if (dealerTotal > 21) {
-    return "player";
-  } else if ( playerTotal > dealerTotal) {
-    return "player";
-  } else if (dealerTotal > playerTotal) {
-    return "dealer";
-  } else {
+  for (let i = 0; i < players.length; i++) {
+    const player = players[i];
+    if (player.member_id === member_id) {
+      const playerTotal = getTotal(player.hand);
+      if (playerTotal <= 21 && playerTotal > winningTotal) {
+        winner = "player";
+        winningTotal = playerTotal;
+        tie = false;
+      } else if (playerTotal === winningTotal) {
+        tie = true;
+      }
+    }
+  }
+
+  if (tie) {
     return "tie";
+  } else {
+    return winner;
   }
 }
 
-function stand_card() {
-  // Get the dealer element
-  const dealer = document.getElementById("dealer-label");
-  const dealer2 = document.getElementById("dealer-label2");
-  //deal
-  // dealer.innerHTML = '';
-  // dealer2.innerHTML = '';
-  // Deal one card to the dealer and update the total
+function hit_card() {
+  const current = players[currentPlayer];
+  const playerHand = current.hand;
+  const playerTotal = getTotal(playerHand);
+
+  // Check if the player has already busted
+  if (playerTotal > 21) {
+    return;
+  }
+
+  // Deal one card to the player and update the total
   const cardIndex = deck.pop();
   const card = cardImages[cardIndex];
-  dealer2.innerText += `<img src="${card}" alt="">`;
-  document.querySelector(".msgdealer2").textContent = `Dealer Total: ${getTotal(dealer)}`;
-  
-  // Determine the winner
-  const winner = determineWinner();
-  if (winner === "dealer") {
-    document.querySelector(".msgdealer").textContent = "Dealer wins!";
-  } else if (winner === "player") {
-    document.querySelector(".msgdealer").textContent = "You win!";
-  } else {
-    // If the winner is not the dealer, deal one more card to the dealer and update their total
-    const newCardIndex = deck.pop();
-    const newCard = cardImages[newCardIndex];
-    dealer2.innerHTML += `<img src="${newCard}" alt="">`;
-    document.querySelector(".msgdealer2").textContent = `Dealer Total: ${getTotal(dealer)}`;
-    const newDealerTotal = getTotal(dealer);
-    
-    // Determine the winner
-    const dealerTotal = getTotal(dealer);
-    if (newDealerTotal > 21) {
-      document.querySelector(".msgdealer").textContent = "Dealer busted. You win!";
-    } else if (newDealerTotal > dealerTotal) {
-      document.querySelector(".msgdealer").textContent = "You win!";
-    } else if (newDealerTotal < dealerTotal) {
-      document.querySelector(".msgdealer").textContent = "Dealer wins!";
-    } else {
-      document.querySelector(".msgdealer").textContent = "It's a tie!";
-    }
+  playerHand.innerHTML += `<img src="${card}" alt="">`;
+  document.querySelector(`.msgdealer${current.member_id}`).textContent = `Total: ${getTotal(playerHand)}`;
 
+  // Check if the player has busted
+  if (getTotal(playerHand) > 21) {
+    document.querySelector(`.msgdealer${current.member_id}`).textContent = "Busted!";
+  }
+
+  // Move to the next player or the dealer if all players have played
+  currentPlayer++;
+  if (currentPlayer === players.length) {
+    stand_card();
   }
 }
+
+// Define a function to fetch the member ID from the MySQL table
+async function fetchMemberID() {
+  try {
+    const response = await fetch('/api/get-member-id');
+    const data = await response.json();
+    console.log('Member ID:', data.member_id);
+    return data.member_id;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+fetchMemberID().then((member_id) => {
+  console.log('Member ID passed to stand_card:', member_id);
+
+  const playersArray = Object.values(players);
+  console.log('Players:', playersArray);
+
+  const currentPlayerIndex = playersArray.findIndex((player) => player.id === member_id);
+  console.log('Current player index:', currentPlayerIndex);
+
+  const currentPlayer = playersArray[currentPlayerIndex];
+  console.log('Current player:', currentPlayer);
+
+  const playerHand = currentPlayer.cards;
+  console.log('Player hand:', playerHand);
+
+  const playerTotal = getTotal(playerHand);
+  console.log('Player total:', playerTotal);
+
+  document.querySelector(`.msgdealer${currentPlayer.id}`).textContent = `${currentPlayer.label}'s Total: ${playerTotal}`;
+
+  currentPlayer.hasPlayed = true;
+  currentPlayerIndex++;
+
+  if (currentPlayerIndex >= playersArray.length) {
+    while (getTotal(Dealers) < 17) {
+      dealCard(Dealers);
+    }
+
+    const winner = determineWinner(member_id);
+    if (winner === "dealer") {
+      document.querySelector(`.msgdealer${currentPlayer.id}`).textContent = "Dealer wins!";
+    } else {
+      document.querySelector(`.msgdealer${currentPlayer.id}`).textContent = "You win!";
+    }
+
+    dealerHasPlayed = true;
+  }
+});
+
+function stand_card(member_id) {
+  // Check if the dealer has alrconst member_id =eady played
+  
+  // Convert the players object to an array
+  const playersArray = Object.values(players);
+ console.log(playersArray);
+  // Get the current player's hand and total
+  const currentPlayerIndex = playersArray.findIndex(player => player.id === member_id);
+  console.log('currentPlayerIndex:', currentPlayerIndex);
+  const currentPlayer = playersArray[currentPlayerIndex];
+  console.log('currentPlayer:', currentPlayer);
+  const playerHand = currentPlayer.cards;
+  const playerTotal = getTotal(playerHand);
+
+  // Add a message for the player's total
+  document.querySelector(`.msgdealer${currentPlayer.id}`).textContent = `${currentPlayer.label}'s Total: ${playerTotal}`;
+
+  // Set the playerHasPlayed flag to true and move on to the next player
+  currentPlayer.hasPlayed = true;
+  currentPlayerIndex++;
+
+  // If all players have played, deal cards to the dealer and determine the winner
+  if (currentPlayerIndex >= playersArray.length) {
+    // Deal cards to the dealer until their total is 17 or higher
+    while (getTotal(dealer) < 17) {
+      dealCard(Dealers);
+    }
+
+    // Determine the winner for the current player and show the message
+    const winner = determineWinner(member_id);
+    if (winner === "dealer") {
+      document.querySelector(`.msgdealer${currentPlayer.id}`).textContent = "Dealer wins!";
+    } else {
+      document.querySelector(`.msgdealer${currentPlayer.id}`).textContent = "You win!";
+    }
+
+    // Set dealerHasPlayed to true to prevent dealing more cards to the dealer
+    dealerHasPlayed = true;
+  }
+}
+
 
 
 

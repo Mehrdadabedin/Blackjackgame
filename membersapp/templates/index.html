@@ -20,8 +20,8 @@
                         <div class="divtest"><span class="card-label player-{{ member.id }}"></span></div>
                         <span class="rotate-btn">
                             {% csrf_token %}
-                                <button class="button" onclick=" add_card(event, '{{ member.id }}');">+</button>
-                                <button id="stand-button" onclick="stand_card()">Stand</button>
+                                <button class="button" onclick=" add_card(event, '{{ member.id }}');">hit</button>
+                                &nbsp;<button class="button" id="stand-button" onclick="stand_card()">stand</button>
 
                         </span> 
                     {% endfor %}
